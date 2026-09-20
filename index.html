@@ -4,137 +4,189 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Save The Date | Mansi & Vikas</title>
-  
+
   <!-- Open Graph for sleek WhatsApp / Social Media Link Previews -->
   <meta property="og:title" content="Save The Date • Mansi & Vikas" />
   <meta property="og:description" content="January 30 & 31, 2027 | Nagda, Madhya Pradesh" />
   <meta property="og:type" content="website" />
 
+  <!-- Google Fonts: Playfair Display + Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+    :root {
+      --gold-primary: #e6c587;
+      --gold-gradient: linear-gradient(135deg, #f7e1b5 0%, #d4a359 50%, #f3d498 100%);
+      --glass-bg: rgba(20, 24, 33, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
-      background: #0f1115;
+      background: radial-gradient(circle at 50% 20%, #1e2430 0%, #0d0f14 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       overflow: hidden;
       color: #fff;
     }
 
-    /* Music Toggle Button */
-    .music-btn {
+    /* Ambient Background Glow */
+    body::before {
+      content: "";
       position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(212, 163, 89, 0.15) 0%, transparent 70%);
+      filter: blur(40px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Floating Audio Player */
+    .music-btn {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 60;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
       border-radius: 50%;
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: transform 0.2s;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .music-btn:active { transform: scale(0.9); }
-    .music-icon {
-      font-size: 1.2rem;
-      display: inline-block;
-    }
-    .rotating {
-      animation: spin 3s linear infinite;
-    }
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
+    .music-btn:active { transform: scale(0.88); }
+    .music-icon { font-size: 1.25rem; }
+    .rotating { animation: spin 4s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    /* Main Card Frame */
+    /* Main Luxury Card Frame */
     .card-container {
       position: relative;
+      z-index: 10;
       width: 90vw;
       max-width: 380px;
-      height: 600px;
-      border-radius: 28px;
+      height: 84vh;
+      max-height: 640px;
+      border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.9),
+                  0 0 0 1px rgba(255, 255, 255, 0.08);
+      background: #14171f;
     }
 
     /* Revealed Underneath Card */
     .reveal-card {
       position: absolute;
       inset: 0;
-      /* Replace the URL below with your high-res vertical photo */
-      background: linear-gradient(180deg, rgba(15, 17, 21, 0.35) 0%, rgba(15, 17, 21, 0.95) 85%),
+      /* If you uploaded couple.jpg, change this url to: url('couple.jpg') */
+      background: linear-gradient(180deg, rgba(13, 15, 20, 0.2) 0%, rgba(13, 15, 20, 0.75) 60%, rgba(13, 15, 20, 0.98) 100%),
                   url('couple.jpeg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
-      padding: 36px 20px;
+      padding: 32px 24px;
       text-align: center;
     }
+
     .badge {
-      font-size: 0.75rem;
-      letter-spacing: 4px;
+      font-size: 0.72rem;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      color: #e5c07b;
+      color: var(--gold-primary);
       margin-bottom: 12px;
       font-weight: 600;
+      background: rgba(230, 197, 135, 0.12);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(230, 197, 135, 0.25);
+      backdrop-filter: blur(8px);
     }
-    .names {
-      font-size: 2.1rem;
-      font-weight: 700;
-      line-height: 1.2;
+
+    .names-wrap {
       margin-bottom: 10px;
-      font-family: Georgia, "Times New Roman", serif;
-      background: linear-gradient(180deg, #ffffff 0%, #dcdcdc 100%);
+    }
+
+    .names {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 600;
+      line-height: 1.25;
+      background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
     }
+
     .ampersand {
+      font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       font-style: italic;
-      color: #e5c07b;
-      -webkit-text-fill-color: #e5c07b;
-      margin: 0 4px;
+      color: #f7e1b5;
+      -webkit-text-fill-color: #f7e1b5;
+      display: inline-block;
+      margin: 2px 0;
     }
+
     .date-highlight {
-      font-size: 1.25rem;
+      font-size: 1.18rem;
       font-weight: 500;
       color: #f3f4f6;
       margin-bottom: 6px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
     }
+
     .location {
-      font-size: 0.95rem;
-      color: #9ca3af;
-      margin-bottom: 26px;
+      font-size: 0.9rem;
+      color: #b0b8c4;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      font-weight: 400;
+      letter-spacing: 0.4px;
     }
+
+    /* Cal Button */
     .cal-btn {
-      background: linear-gradient(135deg, #f3d498 0%, #cfa054 100%);
-      color: #1a150b;
+      background: var(--gold-gradient);
+      color: #14130d;
       font-weight: 700;
-      padding: 13px 26px;
+      letter-spacing: 0.5px;
+      padding: 14px 28px;
       border-radius: 999px;
       text-decoration: none;
       font-size: 0.92rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 8px 20px rgba(229, 192, 123, 0.25);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 10px 25px -3px rgba(212, 163, 89, 0.35);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .cal-btn:active {
-      transform: scale(0.96);
-    }
+    .cal-btn:active { transform: scale(0.95); }
 
     /* Scratch Canvas Overlay */
     #scratchCanvas {
@@ -142,52 +194,72 @@
       inset: 0;
       touch-action: none;
       cursor: pointer;
-      transition: opacity 0.7s ease-out;
+      z-index: 20;
+      transition: opacity 0.8s ease-out, filter 0.8s ease-out;
     }
+
+    /* Smooth Dissolve Out */
+    .dissolve {
+      opacity: 0 !important;
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    /* Luxury Floating Hint Badge */
     .hint-text {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
-      font-size: 0.95rem;
-      letter-spacing: 1.5px;
+      z-index: 25;
+      font-size: 0.85rem;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.9);
-      background: rgba(0, 0, 0, 0.55);
-      padding: 12px 20px;
-      border-radius: 30px;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: opacity 0.4s;
+      font-weight: 600;
+      color: #fff;
+      background: var(--glass-bg);
+      padding: 14px 24px;
+      border-radius: 40px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      animation: gentlePulse 2.5s infinite ease-in-out;
+      transition: opacity 0.4s ease;
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.95; }
+      50% { transform: translate(-50%, -50%) scale(1.04); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Audio Toggle -->
+  <!-- Floating Audio Button -->
   <div class="music-btn" id="musicToggle" title="Play Music">
     <span class="music-icon" id="musicIcon">🎵</span>
   </div>
 
-  <!-- Romantic Background Audio Track (Royalty-free placeholder) -->
+  <!-- Background Music -->
   <audio id="bgMusic" loop preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3" type="audio/mp3">
   </audio>
 
   <div class="card-container">
-    <!-- Underneath Layer (Revealed) -->
+    <!-- Revealed Content -->
     <div class="reveal-card">
       <div class="badge">Save The Date</div>
-      <div class="names">
-        Mansi Karandikar <br/>
-        <span class="ampersand">&amp;</span> <br/>
-        Vikas Mishra
+      <div class="names-wrap">
+        <div class="names">Mansi Karandikar</div>
+        <div class="ampersand">&amp;</div>
+        <div class="names">Vikas Mishra</div>
       </div>
       <div class="date-highlight">January 30 &amp; 31, 2027</div>
       <div class="location">📍 Nagda, Madhya Pradesh</div>
       
-      <!-- One-Click Google Calendar Event -->
+      <!-- Calendar Sync Button -->
       <a 
         class="cal-btn" 
         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Mansi+Karandikar+%26+Vikas+Mishra&dates=20270130/20270201&details=Save+the+Date+for+the+wedding+celebrations+of+Mansi+and+Vikas!&location=Nagda,+Madhya+Pradesh" 
@@ -198,14 +270,14 @@
       </a>
     </div>
 
-    <!-- Scratchable Overlay Canvas -->
+    <!-- Scratch Canvas -->
     <canvas id="scratchCanvas"></canvas>
     <div class="hint-text" id="hint">✨ Scratch to Reveal</div>
   </div>
 
   <script>
     const canvas = document.getElementById('scratchCanvas');
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    const ctx = canvas.getContext('2d');
     const hint = document.getElementById('hint');
     const container = canvas.parentElement;
 
@@ -233,17 +305,17 @@
       canvas.width = container.clientWidth;
       canvas.height = container.clientHeight;
 
-      // Elegant deep metallic scratch surface
+      // Deep metallic graphite texture
       const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, '#1c202a');
-      grad.addColorStop(0.5, '#2e3748');
-      grad.addColorStop(1, '#181b22');
+      grad.addColorStop(0, '#1a1e28');
+      grad.addColorStop(0.5, '#2b3445');
+      grad.addColorStop(1, '#141720');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Metallic dust particles
-      ctx.fillStyle = 'rgba(229, 192, 123, 0.18)';
-      for (let i = 0; i < 60; i++) {
+      // Gold shimmer dust specks
+      ctx.fillStyle = 'rgba(230, 197, 135, 0.22)';
+      for (let i = 0; i < 75; i++) {
         ctx.beginPath();
         ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 2.2, 0, Math.PI * 2);
         ctx.fill();
@@ -251,47 +323,48 @@
     }
 
     let isDrawing = false;
-    let scratched = false;
-    let totalPixelsChecked = 0;
+    let strokeCount = 0;
+    let isFullyRevealed = false;
 
-    function checkScratchPercentage() {
-      // Sample pixels every 25 scratch strokes to save performance
-      totalPixelsChecked++;
-      if (totalPixelsChecked % 25 !== 0) return;
+    function revealFullCard() {
+      if (isFullyRevealed) return;
+      isFullyRevealed = true;
+      hint.style.opacity = '0';
+      canvas.classList.add('dissolve');
 
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      let transparentPixels = 0;
-      const step = 4 * 16; // Skip every 16th pixel for fast execution
+      setTimeout(() => {
+        canvas.style.display = 'none';
+        hint.style.display = 'none';
+      }, 800);
+    }
 
-      for (let i = 3; i < imgData.data.length; i += step) {
-        if (imgData.data[i] === 0) transparentPixels++;
+    function startScratch(e) {
+      if (isFullyRevealed) return;
+      isDrawing = true;
+      strokeCount++;
+
+      // Hide the initial instruction pill after touch starts
+      hint.style.opacity = '0';
+
+      // Auto-start soft music on interaction
+      if (!isPlaying) {
+        bgMusic.play().then(() => {
+          isPlaying = true;
+          musicIcon.classList.add('rotating');
+          musicIcon.textContent = '🎶';
+        }).catch(() => {});
       }
 
-      const totalChecked = imgData.data.length / step;
-      // If ~40% scratched, smoothly dissolve the rest
-      if (transparentPixels / totalChecked > 0.4) {
-        canvas.style.opacity = '0';
-        setTimeout(() => {
-          canvas.style.display = 'none';
-        }, 700);
+      scratch(e);
+
+      // Automatically clear after 2-3 scratches
+      if (strokeCount >= 3) {
+        setTimeout(revealFullCard, 250);
       }
     }
 
     function scratch(e) {
-      if (!isDrawing) return;
-
-      if (!scratched) {
-        hint.style.opacity = '0';
-        scratched = true;
-        // Optionally auto-start music on first touch interaction
-        if (!isPlaying) {
-          bgMusic.play().then(() => {
-            isPlaying = true;
-            musicIcon.classList.add('rotating');
-            musicIcon.textContent = '🎶';
-          }).catch(() => {});
-        }
-      }
+      if (!isDrawing || isFullyRevealed) return;
 
       const rect = canvas.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -301,21 +374,23 @@
 
       ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
-      ctx.arc(x, y, 36, 0, Math.PI * 2);
+      // Broad brush for generous removal
+      ctx.arc(x, y, 46, 0, Math.PI * 2);
       ctx.fill();
-
-      checkScratchPercentage();
     }
 
-    canvas.addEventListener('mousedown', () => isDrawing = true);
-    window.addEventListener('mouseup', () => isDrawing = false);
+    function stopScratch() {
+      isDrawing = false;
+    }
+
+    // Mouse Events
+    canvas.addEventListener('mousedown', startScratch);
+    window.addEventListener('mouseup', stopScratch);
     canvas.addEventListener('mousemove', scratch);
 
-    canvas.addEventListener('touchstart', (e) => {
-      isDrawing = true;
-      scratch(e);
-    }, { passive: true });
-    window.addEventListener('touchend', () => isDrawing = false);
+    // Touch Events
+    canvas.addEventListener('touchstart', startScratch, { passive: true });
+    window.addEventListener('touchend', stopScratch);
     canvas.addEventListener('touchmove', scratch, { passive: true });
 
     window.addEventListener('resize', initCanvas);
